@@ -23,10 +23,16 @@
     <!-- 4 synchronous js  -->
     <!-- load theme toggle first to avoid color flashing on page load and inline render blocking js  -->
     {% set jsthemetoggle %}{% include "theme-toggle-inline.js" %}{% endset %}
-
     <script>
       // prettier-ignore
       {{ jsthemetoggle | jsmin | safe }}
+    </script>
+
+    <!-- independent partial hydration islands architecture: https://github.com/11ty/is-land -->
+    {% set island %}{% include "is-land-inline.js" %}{% endset %}
+    <script>
+      // prettier-ignore
+      {{ island | jsmin | safe }}
     </script>
 
     <!--  inline base schema -->
@@ -65,18 +71,9 @@
     {% endif %}
 
     <!-- defered js  -->
-
     {% if masonry %}
       <!-- masonry fallback, if true in frontmatter -->
       <script src="/assets/scripts/masonry.js?{{ assetHash }}" defer></script>
-    {% endif %}
-
-    {% if youtube %}
-      <!-- youtube, if true in frontmatter -->
-      <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.4.0/lite-youtube.min.js"
-      ></script>
     {% endif %}
 
     {% if meta.navigation.drawerNav %}
