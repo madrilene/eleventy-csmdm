@@ -6,12 +6,10 @@
   {% for item in gallery %}
     <dialog class="flow modal{{ loop.index }}">
       <button class="button" autofocus>Close</button>
-      {% eleventyImage item.image, item.alt, item.caption %}
+      {% image item.image, item.alt, item.caption %}
     </dialog>
 
-    <button data-index="{{ loop.index }}">
-      {% eleventyImage item.image, item.alt %}
-    </button>
+    <button data-index="{{ loop.index }}">{% image item.image, item.alt %}</button>
   {% endfor %}
 </div>
 

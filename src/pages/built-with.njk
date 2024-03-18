@@ -28,7 +28,7 @@ grid:
       {% for site in builtwith | reverse %}
 
       <li class="grid-card | text-step-min-1">
-        {% eleventyImage site.screenshot, site.name, null, "lazy", null, sizes, widths %}
+        {% image site.screenshot, site.name, null, "lazy", null, sizes, widths %}
 
         <p>
           {{ site.description }}

@@ -9,7 +9,7 @@ schema: blog
 
     {% if image %}
       <!-- image -->
-      {% eleventyImage image, alt or title, null, "eager", "feature" %}
+      {% image image, alt or title, null, "eager", "feature" %}
     {% endif %}
     {%
       if

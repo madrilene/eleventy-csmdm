@@ -25,6 +25,6 @@ gallery:
 
 <ul class="gallery" role="list" style="padding: 0;">
   {%- for item in gallery -%}
-    <li>{% eleventyImage item.image, item.alt %}</li>
+    <li>{% image item.image, item.alt %}</li>
   {%- endfor -%}
 </ul>
