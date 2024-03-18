@@ -1,6 +1,6 @@
-/** © Andy Bell - https://buildexcellentwebsit.es/ */
+import slugify from 'slugify';
 
-const slugify = require('slugify');
+/** © Andy Bell - https://buildexcellentwebsit.es/ */
 
 /**
  * Converts human readable tokens into tailwind config friendly ones
@@ -19,4 +19,4 @@ const tokensToTailwind = tokens => {
   return response;
 };
 
-module.exports = tokensToTailwind;
+export default tokensToTailwind;

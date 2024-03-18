@@ -1,14 +1,15 @@
 // CSS and JavaScript as first-class citizens in Eleventy: https://pepelsbey.dev/articles/eleventy-css-js/
 
-const postcss = require('postcss');
-const postcssImport = require('postcss-import');
-const postcssImportExtGlob = require('postcss-import-ext-glob');
-const tailwindcss = require('tailwindcss');
-const postcssRelativeColorSyntax = require('@csstools/postcss-relative-color-syntax');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
+import postcss from 'postcss';
+import postcssImport from 'postcss-import';
+import postcssImportExtGlob from 'postcss-import-ext-glob';
+import postcssColorMixFunction from '@csstools/postcss-color-mix-function';
+import postcssRelativeColorSyntax from '@csstools/postcss-relative-color-syntax';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 
-module.exports = eleventyConfig => {
+export default function configureEleventyCSS(eleventyConfig) {
   eleventyConfig.addTemplateFormats('css');
 
   eleventyConfig.addExtension('css', {
@@ -22,8 +23,9 @@ module.exports = eleventyConfig => {
         let output = await postcss([
           postcssImportExtGlob,
           postcssImport,
-          tailwindcss,
           postcssRelativeColorSyntax({preserve: true}),
+          postcssColorMixFunction({preserve: true}),
+          tailwindcss,
           autoprefixer,
           cssnano
         ]).process(content, {
@@ -34,4 +36,4 @@ module.exports = eleventyConfig => {
       };
     }
   });
-};
+}

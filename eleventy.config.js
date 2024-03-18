@@ -1,58 +1,27 @@
 /**
- * I try to keep the `eleventy.config.js` file clean and uncluttered. Most adjustments must be made in:
- *  - `./config/collections/index.js`
- *  - `./config/filters/index.js`
- *  - `./config/plugins/index.js`
- *  - `./config/shortcodes/index.js`
- *  - `./config/transforms/index.js`
+ * Most adjustments must be made in `./src/_config/*`
  */
-
-// JSDoc comment: Hint VS Code for eleventyConfig autocompletion. © Henry Desroches - https://gist.github.com/xdesro/69583b25d281d055cd12b144381123bf
 
 /**
- *  @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * Configures Eleventy with various settings, collections, plugins, filters, shortcodes, and more.
+ * Hint VS Code for eleventyConfig autocompletion.
+ * © Henry Desroches - https://gist.github.com/xdesro/69583b25d281d055cd12b144381123bf
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig -
+ * @returns {Object} -
  */
 
-// module import filters
-const {
-  toISOString,
-  formatDate,
-  toAbsoluteUrl,
-  stripHtml,
-  minifyCss,
-  minifyJs,
-  splitlines
-} = require('./config/filters/index.js');
+import {readFileSync} from 'node:fs';
+const pkg = JSON.parse(readFileSync('./package.json'));
 
-// module import shortcodes
-const {imageShortcode, includeRaw, liteYoutube} = require('./config/shortcodes/index.js');
+//  config import
+import {getAllArticles, onlyMarkdown} from './src/_config/collections.js';
+import events from './src/_config/events.js';
+import filters from './src/_config/filters.js';
+import plugins from './src/_config/plugins.js';
+import shortcodes from './src/_config/shortcodes.js';
 
-// module import collections
-const {getAllPosts} = require('./config/collections/index.js');
-const {onlyMarkdown} = require('./config/collections/index.js');
-const {tagList} = require('./config/collections/index.js');
-
-// module import events
-const {svgToJpeg} = require('./config/events/index.js');
-
-// plugins
-
-const {EleventyRenderPlugin} = require('@11ty/eleventy');
-const pluginRss = require('@11ty/eleventy-plugin-rss');
-const inclusiveLangPlugin = require('@11ty/eleventy-plugin-inclusive-language');
-const bundlerPlugin = require('@11ty/eleventy-plugin-bundle');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-
-const markdownLib = require('./config/plugins/markdown.js');
-const {slugifyString} = require('./config/utils/index.js');
-const yaml = require('js-yaml');
-
-module.exports = eleventyConfig => {
-  // 	--------------------- Custom Watch Targets -----------------------
-  eleventyConfig.addWatchTarget('./src/assets');
-  eleventyConfig.addWatchTarget('./utils/*.js');
-
-  // --------------------- layout aliases -----------------------
+export default async function (eleventyConfig) {
+  // --------------------- layout aliases
   eleventyConfig.addLayoutAlias('base', 'base.njk');
   eleventyConfig.addLayoutAlias('home', 'home.njk');
   eleventyConfig.addLayoutAlias('page', 'page.njk');
@@ -60,79 +29,75 @@ module.exports = eleventyConfig => {
   eleventyConfig.addLayoutAlias('post', 'post.njk');
   eleventyConfig.addLayoutAlias('tags', 'tags.njk');
 
-  // 	---------------------  Custom filters -----------------------
-  eleventyConfig.addFilter('toIsoString', toISOString);
-  eleventyConfig.addFilter('formatDate', formatDate);
-  eleventyConfig.addFilter('toAbsoluteUrl', toAbsoluteUrl);
-  eleventyConfig.addFilter('stripHtml', stripHtml);
-  eleventyConfig.addFilter('slugify', slugifyString);
-  eleventyConfig.addFilter('splitlines', splitlines);
-
-  eleventyConfig.addFilter('cssmin', minifyCss);
-  eleventyConfig.addNunjucksAsyncFilter('jsmin', minifyJs);
-
-  eleventyConfig.addFilter('toJson', JSON.stringify);
-  eleventyConfig.addFilter('fromJson', JSON.parse);
-
-  eleventyConfig.addFilter('keys', Object.keys);
-  eleventyConfig.addFilter('values', Object.values);
-  eleventyConfig.addFilter('entries', Object.entries);
-
-  // 	--------------------- Custom shortcodes ---------------------
-  eleventyConfig.addNunjucksAsyncShortcode('eleventyImage', imageShortcode);
-  eleventyConfig.addShortcode('youtube', liteYoutube);
-  eleventyConfig.addShortcode('include_raw', includeRaw);
-  eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`); // current year, by stephanie eckles
-
-  // 	--------------------- Custom transforms ---------------------
-  eleventyConfig.addPlugin(require('./config/transforms/html-config.js'));
-
-  // 	--------------------- Custom Template Languages ---------------------
-  eleventyConfig.addPlugin(require('./config/template-languages/css-config.js'));
-  eleventyConfig.addPlugin(require('./config/template-languages/js-config.js'));
-
-  // 	--------------------- Custom collections -----------------------
-  eleventyConfig.addCollection('posts', getAllPosts);
+  //	---------------------  Collections
+  eleventyConfig.addCollection('articles', getAllArticles);
   eleventyConfig.addCollection('onlyMarkdown', onlyMarkdown);
-  eleventyConfig.addCollection('tagList', tagList);
 
-  // 	--------------------- Events ---------------------
+  // ---------------------  Plugins
+  eleventyConfig.addPlugin(plugins.htmlConfig);
+  eleventyConfig.addPlugin(plugins.cssConfig);
+  eleventyConfig.addPlugin(plugins.jsConfig);
+
+  eleventyConfig.addPlugin(plugins.EleventyRenderPlugin);
+  eleventyConfig.addPlugin(plugins.rss);
+  eleventyConfig.addPlugin(plugins.syntaxHighlight);
+
+  eleventyConfig.addPlugin(plugins.webc, {
+    components: ['./src/_webc/**/*.webc'],
+    useTransform: true,
+    transformData: {
+      pkg
+    }
+  });
+
+  // 	--------------------- Library
+  eleventyConfig.setLibrary('md', plugins.markdownLib);
+
+  // --------------------- Filters
+  eleventyConfig.addFilter('toIsoString', filters.toISOString);
+  eleventyConfig.addFilter('formatDate', filters.formatDate);
+  eleventyConfig.addFilter('cssmin', filters.minifyCss);
+  eleventyConfig.addNunjucksAsyncFilter('jsmin', filters.minifyJs);
+  eleventyConfig.addFilter('splitlines', filters.splitlines);
+  eleventyConfig.addFilter('striptags', filters.striptags);
+  eleventyConfig.addFilter('toAbsoluteUrl', filters.toAbsoluteUrl);
+  eleventyConfig.addFilter('slugify', filters.slugifyString);
+  eleventyConfig.addFilter('escapeHtml', filters.escapeHtml);
+
+  // --------------------- Shortcodes
+  eleventyConfig.addShortcode('svg', shortcodes.svg);
+  eleventyConfig.addShortcode('image', shortcodes.image);
+  eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
+
+  // --------------------- Events ---------------------
   if (process.env.ELEVENTY_RUN_MODE === 'serve') {
-    // this only runs in development, on your machine, so og images get installed fonts.
-    eleventyConfig.on('eleventy.after', svgToJpeg);
+    eleventyConfig.on('eleventy.after', events.svgToJpeg);
   }
 
-  // 	--------------------- Plugins ---------------------
-  eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addPlugin(syntaxHighlight);
-  eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(inclusiveLangPlugin);
-  eleventyConfig.addPlugin(bundlerPlugin);
-  eleventyConfig.setLibrary('md', markdownLib);
+  // --------------------- Passthrough File Copy
 
-  // Add support for YAML data files with .yaml extension
-  eleventyConfig.addDataExtension('yaml', contents => yaml.load(contents));
-
-  // 	--------------------- Passthrough File Copy -----------------------
-  // same path
+  // -- same path
   ['src/assets/fonts/', 'src/assets/images/template', 'src/assets/og-images'].forEach(
     path => eleventyConfig.addPassthroughCopy(path)
   );
 
-  // to root
+  // -- to root
   eleventyConfig.addPassthroughCopy({
     'src/assets/images/favicon/*': '/'
   });
 
-  // 	--------------------- general config -----------------------
-  return {
-    // Pre-process *.md, *.html and global data files files with: (default: `liquid`)
-    markdownTemplateEngine: 'njk',
-    htmlTemplateEngine: 'njk',
-    dataTemplateEngine: 'njk',
+  // -- node_modules
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/lite-youtube-embed/src/lite-yt-embed.{css,js}': `assets/scripts/`
+  });
 
-    // Optional (default is set): If your site deploys to a subdirectory, change `pathPrefix`, for example with with GitHub pages
-    pathPrefix: '/',
+  // --------------------- Build Settings
+  eleventyConfig.setDataDeepMerge(true);
+
+  // --------------------- general config
+  return {
+    htmlTemplateEngine: false,
+    markdownTemplateEngine: 'njk',
 
     dir: {
       output: 'dist',
@@ -141,4 +106,4 @@ module.exports = eleventyConfig => {
       layouts: '_layouts'
     }
   };
-};
+}

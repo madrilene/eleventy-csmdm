@@ -1,6 +1,6 @@
-/** © Andy Bell - https://buildexcellentwebsit.es/ */
+import viewports from '../../_data/designTokens/viewports.json';
 
-const viewports = require('../_data/designTokens/viewports.json');
+/** © Andy Bell - https://buildexcellentwebsit.es/ */
 
 /**
  * Takes an array of tokens and sends back and array of name
@@ -38,4 +38,4 @@ const clampGenerator = tokens => {
   });
 };
 
-module.exports = clampGenerator;
+export default clampGenerator;
