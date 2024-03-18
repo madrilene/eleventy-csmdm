@@ -1,9 +1,10 @@
 {
   "name": "eleventy-excellent",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Eleventy starter built around the workflow suggested by Andy Bell's buildexcellentwebsit.es.",
   "author": "Lene Saile",
   "license": "ISC",
+  "type": "module",
   "engines": {
     "node": ">=18.x.x"
   },
@@ -20,16 +21,20 @@
     "url": "https://github.com/madrilene/eleventy-excellent.git"
   },
   "dependencies": {
-    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy": "3.0.0-alpha.5",
     "@11ty/eleventy-fetch": "^4.0.0",
     "@11ty/eleventy-img": "^4.0.2",
     "@11ty/eleventy-plugin-bundle": "^1.0.4",
     "@11ty/eleventy-plugin-inclusive-language": "^1.0.3",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@11ty/eleventy-plugin-webc": "^0.11.2",
+    "@11ty/is-land": "^4.0.0",
+    "lite-youtube-embed": "^0.3.2",
     "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
+    "@csstools/postcss-color-mix-function": "^2.0.12",
     "@csstools/postcss-relative-color-syntax": "^2.0.9",
     "@toycode/markdown-it-class": "^1.2.4",
     "autoprefixer": "^10.4.13",
