@@ -44,10 +44,8 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPlugin(plugins.webc, {
     components: ['./src/_webc/**/*.webc'],
-    useTransform: true,
-    transformData: {
-      pkg
-    }
+    bundlePluginOptions: {transforms: []},
+    useTransform: true
   });
 
   // 	--------------------- Library
@@ -66,7 +64,7 @@ export default async function (eleventyConfig) {
 
   // --------------------- Shortcodes
   eleventyConfig.addShortcode('svg', shortcodes.svg);
-  eleventyConfig.addShortcode('image', shortcodes.image);
+  eleventyConfig.addShortcode('image', shortcodes.imageShortcode);
   eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
 
   // --------------------- Events ---------------------
