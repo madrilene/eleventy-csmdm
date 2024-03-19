@@ -3,8 +3,6 @@
 import postcss from 'postcss';
 import postcssImport from 'postcss-import';
 import postcssImportExtGlob from 'postcss-import-ext-glob';
-import postcssColorMixFunction from '@csstools/postcss-color-mix-function';
-import postcssRelativeColorSyntax from '@csstools/postcss-relative-color-syntax';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
@@ -23,8 +21,6 @@ export default function configureEleventyCSS(eleventyConfig) {
         let output = await postcss([
           postcssImportExtGlob,
           postcssImport,
-          postcssRelativeColorSyntax({preserve: true}),
-          postcssColorMixFunction({preserve: true}),
           tailwindcss,
           autoprefixer,
           cssnano
