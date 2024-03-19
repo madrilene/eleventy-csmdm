@@ -42,8 +42,15 @@
 <meta property="og:type" content="website" />
 <meta
   property="og:title"
-  content="{% if title %}{{ title }}{% else %}{{ meta.siteName }}{% endif %}"
+  content="{% if discover.title %}
+    {{ discover.title }}
+  {% elif title %}
+    {{ title }}
+  {% else %}
+    {{ meta.siteName }}
+  {% endif %}"
 />
+
 <meta
   property="og:image"
   content="{% if (layout == 'post') %}
