@@ -97,7 +97,7 @@
   transform: var(--nav-list-rotate, rotate(45deg));
 }
 
-@media screen(sm) {
+@media screen(navigation) {
   .site-nav-drawer {
     --nav-button-display: none;
     --nav-position: static;
