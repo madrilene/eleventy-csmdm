@@ -9,14 +9,7 @@ schema: blog
 
     {% if image %}
       <!-- image -->
-      {% image image, alt or title, null, "eager", "feature" %}
-    {% endif %}
-    {%
-      if
-      credit
-    %}
-      <!-- credit -->
-      <p class="credit feature | text-step-min-1">© {{ credit }}</p>
+      {% image image, alt or title, credit, "eager", "feature" %}
     {% endif %}
 
     <p class="meta | cluster" style="--gutter: var(--space-xs-s)">
