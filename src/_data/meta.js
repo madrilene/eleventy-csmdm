@@ -57,7 +57,7 @@ export const navigation = {
   ariaBottom: 'Complementary',
   ariaPlatforms: 'Platforms',
   // activate alternative mobile menu with drawer
-  drawerNav: true,
+  drawerNav: false,
   navLabel: 'Menu'
 };
 export const themeSwitch = {
