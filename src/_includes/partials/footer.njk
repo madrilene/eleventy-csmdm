@@ -32,7 +32,7 @@
           type="{{ meta.blog.feedLinks[0].type }}"
         >
           <span class="visually-hidden">{{ meta.blog.feedLinks[0].title }}</span>
-          <div aria-hidden="true">{% include 'svg/rss.svg' %}</div>
+          {% svg "misc/rss" %}
         </a>
 
         {% for key, value in personal.platforms %}
@@ -40,7 +40,7 @@
             <!-- regular platforms -->
             <a href="{{ value }}" rel="me">
               <span class="visually-hidden">{{ key | capitalize }}</span>
-              <div aria-hidden="true">{% include 'svg/platform-' + key + '.svg' %}</div>
+              {% svg 'platform/' + key %}
             </a>
           {% endif %}
         {% endfor %}
@@ -52,8 +52,7 @@
 
     <div class="text-center mt-m-l">
       <a class="creator text-step-min-1" href="{{ meta.creator.website }}"
-        >Made with <span>{% include 'svg/heart.svg' %}</span> by
-        {{ meta.creator.name }}</a
+        >Made with <span>{% svg "misc/heart" %}</span> by {{ meta.creator.name }}</a
       >
     </div>
   </div>

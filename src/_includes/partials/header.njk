@@ -7,7 +7,8 @@
       class="logo | cluster"
       {% if page.url == "/" %}aria-current="page"{% endif %}
     >
-      {% include "svg/star.svg" %}
+      {% svg "misc/star" %}
+
       <span>{{ meta.siteName }}</span>
     </a>
     {% include "partials/main-nav.njk" %}

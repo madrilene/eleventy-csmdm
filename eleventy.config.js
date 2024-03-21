@@ -63,7 +63,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addFilter('escapeHtml', filters.escapeHtml);
 
   // --------------------- Shortcodes
-  eleventyConfig.addShortcode('svg', shortcodes.svg);
+  eleventyConfig.addShortcode('svg', shortcodes.svgShortcode);
   eleventyConfig.addShortcode('image', shortcodes.imageShortcode);
   eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
 
