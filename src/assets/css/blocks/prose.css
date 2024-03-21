@@ -5,7 +5,7 @@
   --wrapper-width: 64rem;
 }
 
-.prose :is(pre, pre + *, figure, figure + *) {
+.prose :where(pre, pre + *, figure, figure + *) {
   --flow-space: var(--space-m-l);
 }
 
@@ -17,11 +17,11 @@
   border-bottom: 1px solid var(--color-bg-accent);
 }
 
-.prose :is(h2, h3, h4) {
+.prose :where(h2, h3, h4) {
   --flow-space: var(--space-xl);
 }
 
-.prose :is(h2 + *, h3 + *, h4 + *):not(figure) {
+.prose :where(h2 + *, h3 + *, h4 + *):not(figure) {
   --flow-space: var(--space-m);
 }
 
