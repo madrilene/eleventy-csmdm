@@ -22,24 +22,20 @@ grid:
   {% include 'svg/divider-soft-top.svg' %}
 
   <section class="section__inner wrapper">
+
     <h2>Based on, or built with Eleventy Excellent:</h2>
-    <ul class="grid" role="list" style="--gutter: var(--space-xl) var(--space-m)">
+    <div class="grid region" style="--region-space-top: var(--space-xl); --gutter: var(--space-xl) var(--space-m)">
       <!-- you find tha data for that in src/_data/builtwith.json -->
       {% for site in builtwith | reverse %}
 
-      <li class="grid-card | text-step-min-1">
-        {% image site.screenshot, site.name, null, "lazy", null, sizes, widths %}
+			<custom-card no-padding equally-spaced img-square class="text-step-min-1">
+				{% image site.screenshot, site.name, null, "lazy", null, sizes, widths %}
+        <p slot="content">  {{ site.description }}</p>
+				<footer slot="footer">  <a class="no-indicator" href="{{ site.link }}">{{ site.link | replace("https://", "") }}</a> </footer>
+      </custom-card>
 
-        <p>
-          {{ site.description }}
-        </p>
-
-        <p>
-          <a href="{{ site.link }}">{{ site.link | replace("https://", "") }}</a>
-        </p>
-      </li>
       {% endfor %}
-    </ul>
+    </div>
   </section>
 
   {% include 'svg/divider-soft-bottom.svg' %}

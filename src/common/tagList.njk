@@ -10,16 +10,20 @@ eleventyComputed:
 ---
 
 
-<ul class="grid region" role="list" data-rows="masonry" data-layout="50-50">
+<div class="grid region" data-rows="masonry" data-layout="50-50">
 	<!-- loop posts -->
-	{% set itemList = collections[tag] | reverse %} {% for item in itemList %}
-	<!-- activate tags -->
-	{% set activateTags = true %}
-	<!-- set heading context -->
-	{% set headingContext = "h2" %}
-	<!-- card -->
-	{% include 'components/card.njk' %} {% endfor %}
-</ul>
+	{% set itemList = collections[tag] | reverse %}
+	{% for item in itemList %}
+	<custom-card clickable>
+		<h2 slot="headline">
+			<a href="{{ item.url | url }}">{{ item.data.title }}</a>
+		</h2>
+		<span slot="date"> {% include "components/date.njk" %} </span>
+		<p slot="content">{{ item.data.description }}</p>
+	</custom-card>
+	{% endfor %}
+</div>
+
 
 <h2>{{ meta.blog.tagMore }}</h2>
 
