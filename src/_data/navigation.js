@@ -15,13 +15,13 @@ export default {
     {
       text: 'Blog',
       url: '/blog/'
-    },
-    {
-      text: 'Style guide',
-      url: '/styleguide/'
     }
   ],
   bottom: [
+    {
+      text: 'Style guide',
+      url: '/styleguide/'
+    },
     {
       text: 'Imprint',
       url: '/imprint/'
