@@ -14,7 +14,7 @@ import {readFileSync} from 'node:fs';
 const pkg = JSON.parse(readFileSync('./package.json'));
 
 //  config import
-import {getAllArticles, onlyMarkdown} from './src/_config/collections.js';
+import {getAllArticles, onlyMarkdown, tagList} from './src/_config/collections.js';
 import events from './src/_config/events.js';
 import filters from './src/_config/filters.js';
 import plugins from './src/_config/plugins.js';
@@ -32,6 +32,7 @@ export default async function (eleventyConfig) {
   //	---------------------  Collections
   eleventyConfig.addCollection('articles', getAllArticles);
   eleventyConfig.addCollection('onlyMarkdown', onlyMarkdown);
+  eleventyConfig.addCollection('tagList', tagList);
 
   // ---------------------  Plugins
   eleventyConfig.addPlugin(plugins.htmlConfig);
@@ -44,7 +45,6 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPlugin(plugins.webc, {
     components: ['./src/_webc/**/*.webc'],
-    bundlePluginOptions: {transforms: []},
     useTransform: true
   });
 
