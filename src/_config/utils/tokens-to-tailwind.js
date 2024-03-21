@@ -1,6 +1,7 @@
-import slugify from 'slugify';
-
-/** © Andy Bell - https://buildexcellentwebsit.es/ */
+/**
+ * Credits:
+ * - © Andy Bell - https://buildexcellentwebsit.es/
+ */
 
 /**
  * Converts human readable tokens into tailwind config friendly ones
@@ -8,7 +9,10 @@ import slugify from 'slugify';
  * @param {array} tokens {name: string, value: any}
  * @return {object} {key, value}
  */
-const tokensToTailwind = tokens => {
+
+import slugify from 'slugify';
+
+export const tokensToTailwind = tokens => {
   const nameSlug = text => slugify(text, {lower: true});
   let response = {};
 
@@ -18,5 +22,3 @@ const tokensToTailwind = tokens => {
 
   return response;
 };
-
-export default tokensToTailwind;

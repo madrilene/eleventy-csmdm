@@ -11,7 +11,7 @@ import markdownitAbbr from 'markdown-it-abbr';
 import {slugifyString} from '../filters/slugify.js';
 import path from 'path';
 
-const markdownLib = markdownIt({
+export const markdownLib = markdownIt({
   html: true,
   breaks: true,
   linkify: true,
@@ -84,5 +84,3 @@ const markdownLib = markdownIt({
   .use(markdownItFootnote)
   .use(markdownitMark)
   .use(markdownitAbbr);
-
-export default markdownLib;

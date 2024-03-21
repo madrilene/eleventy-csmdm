@@ -1,4 +1,8 @@
-// CSS and JavaScript as first-class citizens in Eleventy: https://pepelsbey.dev/articles/eleventy-css-js/
+/**
+ * CSS as first-class citizen in Eleventy
+ * Credits:
+ * - Vadim Makeev - https://pepelsbey.dev/articles/eleventy-css-js/
+ */
 
 import postcss from 'postcss';
 import postcssImport from 'postcss-import';
@@ -7,7 +11,9 @@ import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
-export default function configureEleventyCSS(eleventyConfig) {
+// : https://pepelsbey.dev/articles/eleventy-css-js/
+
+export const cssConfig = eleventyConfig => {
   eleventyConfig.addTemplateFormats('css');
 
   eleventyConfig.addExtension('css', {
@@ -32,4 +38,4 @@ export default function configureEleventyCSS(eleventyConfig) {
       };
     }
   });
-}
+};

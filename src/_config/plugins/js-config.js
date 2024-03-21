@@ -1,20 +1,20 @@
-import esbuild from "esbuild";
+import esbuild from 'esbuild';
 
-export default function configureEleventy(eleventyConfig) {
-  eleventyConfig.addTemplateFormats("js");
+export const jsConfig = eleventyConfig => {
+  eleventyConfig.addTemplateFormats('js');
 
-  eleventyConfig.addExtension("js", {
-    outputFileExtension: "js",
+  eleventyConfig.addExtension('js', {
+    outputFileExtension: 'js',
     compile: async (content, path) => {
-      if (!path.startsWith("./src/assets/scripts/")) {
+      if (!path.startsWith('./src/assets/scripts/')) {
         return;
       }
 
-      if (path === "./src/assets/scripts/is-land.js") {
+      if (path === './src/assets/scripts/is-land.js') {
         await esbuild.build({
-          target: "es2020",
+          target: 'es2020',
           entryPoints: [path],
-          outfile: "./src/_includes/is-land-inline.js",
+          outfile: './src/_includes/is-land-inline.js',
           bundle: true,
           minify: true
         });
@@ -23,7 +23,7 @@ export default function configureEleventy(eleventyConfig) {
 
       return async () => {
         let output = await esbuild.build({
-          target: "es2020",
+          target: 'es2020',
           entryPoints: [path],
           minify: true,
           bundle: true,
@@ -34,4 +34,4 @@ export default function configureEleventy(eleventyConfig) {
       };
     }
   });
-}
+};

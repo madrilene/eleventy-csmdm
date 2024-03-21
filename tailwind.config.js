@@ -4,8 +4,8 @@ import plugin from 'tailwindcss/plugin';
 import postcss from 'postcss';
 import postcssJs from 'postcss-js';
 
-import clampGenerator from './src/_config/utils/clamp-generator.js';
-import tokensToTailwind from './src/_config/utils/tokens-to-tailwind.js';
+import {clampGenerator} from './src/_config/utils/clamp-generator.js';
+import {tokensToTailwind} from './src/_config/utils/tokens-to-tailwind.js';
 
 // Raw design tokens
 import colorTokens from './src/_data/designTokens/colors.json';
