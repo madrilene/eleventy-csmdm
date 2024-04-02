@@ -1,7 +1,6 @@
 /** All blog posts as a collection. */
-export const getAllArticles = collection => {
-  const articles = collection.getFilteredByGlob('./src/articles/**/*.md');
-  return articles.reverse();
+export const getAllPosts = collection => {
+  return collection.getFilteredByGlob('./src/posts/**/*.md').reverse();
 };
 
 /** All markdown files as a collection for sitemap.xml */
