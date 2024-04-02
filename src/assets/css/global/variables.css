@@ -16,13 +16,16 @@
   --tracking-wide: 0.05ch;
 
   --gradient-rainbow: linear-gradient(
-    90deg,
+    120deg,
     #cf4662 10%,
     #fbbe25 30%,
     #62c95c 50%,
     #08bccb 75%,
     #a977d5 90%
   );
+
+  --gradient-water: linear-gradient(90deg, #297683, #102430);
+
   --gradient-conic: conic-gradient(
     var(--color-primary) 0 28%,
     var(--color-secondary) 0 67%,
