@@ -1,10 +1,10 @@
 export const url = process.env.URL || 'http://localhost:8080';
-export const siteName = 'Eleventy Excellent';
+export const siteName = 'CSM Duilio Marcante';
 export const siteDescription =
   'Eleventy starter built around the CSS workflow suggested by buildexcellentwebsit.es';
 export const siteType = 'Person'; // schema
-export const locale = 'en_EN';
-export const lang = 'en';
+export const locale = 'it_IT';
+export const lang = 'it';
 export const skipContent = 'Skip to content';
 export const author = {
   name: 'Lene Saile', // i.e. Lene Saile - page / blog author's name. Must be set.

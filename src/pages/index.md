@@ -1,14 +1,14 @@
 ---
 permalink: /index.html
-title: ' Eleventy Excellent'
-description: 'Eleventy starter using modern CSS, fluid type, fluid spacing, flexible layout and progressive enhancement.'
+title: 'CSM Duilio Marcante'
+description: 'Centro Subacqueo Mediterraneo "Duilio Marcante"'
 layout: 'home'
 blog:
   title: 'Blog'
   intro: "I'm showing the last 4 blog posts, but there might be more!"
 ---
 
-## An Eleventy starter
+## Centro Subacqueo Mediterraneo "Duilio Marcante"
 
 This starter is based on [Andy Bell's CSS workflow/boilerplate](/about/).
 In Andy's words, we'd rather hint the browser than micromanage it, using progressive enhancement, CSS layout, fluid type & spacing, and modern CSS features.
