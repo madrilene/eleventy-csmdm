@@ -5,7 +5,7 @@ description: 'Centro Subacqueo Mediterraneo "Duilio Marcante"'
 layout: 'home'
 blog:
   title: 'Blog'
-  intro: "I'm showing the last 4 blog posts, but there might be more!"
+  intro: ''
 ---
 
 ## Centro Subacqueo Mediterraneo "Duilio Marcante"
