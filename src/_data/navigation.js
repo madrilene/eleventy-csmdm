@@ -1,33 +1,29 @@
 export default {
   top: [
     {
-      text: 'About',
-      url: '/about/'
+      text: 'Cristo degli Abissi',
+      url: '/cristo-degli-abissi/'
     },
     {
-      text: 'Get started',
-      url: '/get-started/'
-    },
-    {
-      text: 'Built with',
-      url: '/built-with/'
+      text: 'Persone con Disabilità',
+      url: '/persone-con-disabilita/'
     },
     {
       text: 'Blog',
       url: '/blog/'
+    },
+    {
+      text: 'Contatti',
+      url: '/contatti/'
     }
   ],
   bottom: [
     {
-      text: 'Style guide',
-      url: '/styleguide/'
-    },
-    {
-      text: 'Imprint',
+      text: 'Avviso legale',
       url: '/imprint/'
     },
     {
-      text: 'Privacy',
+      text: 'Informativa sulla privacy',
       url: '/privacy/'
     }
   ]

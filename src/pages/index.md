@@ -10,10 +10,10 @@ blog:
 
 ## Centro Subacqueo Mediterraneo "Duilio Marcante"
 
-This starter is based on [Andy Bell's CSS workflow/boilerplate](/about/).
-In Andy's words, we'd rather hint the browser than micromanage it, using progressive enhancement, CSS layout, fluid type & spacing, and modern CSS features.
-The aim is to create frontends that look good to everyone, regardless of device, connection speed or context.
+Il Centro Subacqueo Mediterraneo "Duilio Marcante" (CSM), dedicato al suo fondatore, padre della moderna didattica subacquea sportiva, è presente nell'ambiente della subacquea fin dal 1952.
 
-I have tried to [document a few things](/get-started/).
+Negli anni ha svolto molte attività legate alla subacquea, fino al 1985 è stato Unico Centro Nazionale Federale di Formazione Istruttori Sub in Italia, ha proposto per primo corsi per subacquei sportivi e specialità quali la Biologia Marina e l'Archeologia Subacquea.
 
-**Have fun** and let me know if you find any issues or have ideas for improvements!
+Dal 1987 ha svolto attività di introduzione alla subacquea con autorespiratori per persone disabili, generalmente portatori di disabilità fisica, e dal 2019 ha iniziato un progetto di Snorkeling per persone con disabilità intellettiva relazionale.
+
+Il CSM ha proposto e seguito la posa della statua del Cristo degli Abissi nella Baia di San Fruttoso, provvedendo alla sua manutenzione ordinaria e alla preparazione della manifestazione annuale.
