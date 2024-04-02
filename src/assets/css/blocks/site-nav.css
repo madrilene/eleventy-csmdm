@@ -65,8 +65,8 @@
   /* Change border-color and color for the active page */
   .site-nav [aria-current='page'],
   .site-nav [data-state='active'] {
-    --text-decoration: var(--color-primary);
-    --text-color: var(--color-primary);
+    --text-decoration: var(--color-text);
+    --text-color: var(--color-text);
     --background-color: transparent;
   }
 }
