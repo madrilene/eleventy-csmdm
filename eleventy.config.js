@@ -10,8 +10,7 @@
  * @returns {Object} -
  */
 
-import {readFileSync} from 'node:fs';
-const pkg = JSON.parse(readFileSync('./package.json'));
+import yaml from 'js-yaml';
 
 //  config import
 import {getAllArticles, onlyMarkdown, tagList} from './src/_config/collections.js';
@@ -48,8 +47,9 @@ export default async function (eleventyConfig) {
     useTransform: true
   });
 
-  // 	--------------------- Library
+  // 	--------------------- Library and Data
   eleventyConfig.setLibrary('md', plugins.markdownLib);
+  eleventyConfig.addDataExtension('yaml', contents => yaml.load(contents));
 
   // --------------------- Filters
   eleventyConfig.addFilter('toIsoString', filters.toISOString);
